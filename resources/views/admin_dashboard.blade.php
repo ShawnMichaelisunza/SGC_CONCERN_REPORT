@@ -37,6 +37,7 @@
                 </div>
             </div>
 
+            {{-- table --}}
             <div class="px-4 py-8">
                 <!-- User Table -->
                 <div class="overflow-x-auto bg-white rounded-lg shadow">
@@ -107,14 +108,14 @@
                                                 @else
 
 
-                                                    @if ($report->status == 'PROCESSING')
+                                                    @if (auth()->user()->usertype == 'admin')
 
                                                     <a href="{{ route('report_approveView', encrypt($report->id)) }}"
                                                         class="w-4 mr-4 transform hover:text-green-500 text-lg hover:scale-110">
                                                         <i class="fa-solid fa-square-check"></i>
                                                     </a>
 
-                                                    @else
+                                                    @elseif (auth()->user()->usertype == 'headAdmin')
 
                                                     <a href="{{ route('report_viewProcess', encrypt($report->id)) }}"
                                                         hx-get="{{ route('report_viewProcess', encrypt($report->id)) }}"

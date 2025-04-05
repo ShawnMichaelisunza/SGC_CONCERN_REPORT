@@ -23,7 +23,6 @@
                 DASHBOARD
             </a>
 
-
             <a href="{{ route('report_pending') }}"
                 class="flex items-center px-4 py-2 text-gray-100 hover:bg-red-700 group">
                 <i class="fa-solid fa-spinner  h-7 w-7 mr-2 pt-2"></i>
@@ -47,6 +46,19 @@
                 <i class="fa-solid fa-ban h-7 w-7 mr-2 pt-2"></i>
                 CANCELED REPORT
             </a>
+            @if (auth()->user()->usertype == 'superAdmin')
+                <a href="{{ route('user.index') }}"
+                    class="flex items-center px-4 py-2 text-gray-100 hover:bg-red-700 group">
+                    <i class="fa-solid fa-users h-7 w-7 mr-2 pt-2"></i>
+                    USER ACCOUNT
+                </a>
+
+                <a href="{{ route('user.deleted') }}"
+                    class="flex items-center px-4 py-2 text-gray-100 hover:bg-red-700 group">
+                    <i class="fa-solid fa-user-slash h-7 w-7 mr-2 pt-2"></i>
+                    DELETED USER ACCOUNT
+                </a>
+            @endif
 
             <a href="{{ route('logout') }}"
                 class="flex items-center px-4 py-2 my-8 text-gray-100 hover:bg-red-700 group">

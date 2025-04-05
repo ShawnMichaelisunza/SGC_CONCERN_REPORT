@@ -27,8 +27,9 @@ class DashboardController extends Controller
         if (Auth::id()) {
             $usertype = auth()->user()->usertype;
 
-            if ($usertype == 'admin') {
+            if ($usertype == 'admin' || $usertype == 'headAdmin' || $usertype == 'superAdmin') {
                 return view('admin_dashboard', ['reports' => $reports]);
+
             }elseif($usertype == 'user'){
 
                 $employees = $this->employeeService->AllEmployeeService();
@@ -36,8 +37,6 @@ class DashboardController extends Controller
                 return view('dashboard', ['employees' => $employees]);
             }
         }
-
         return abort(404);
-
     }
 }

@@ -62,6 +62,9 @@
                                     <td class="py-3 px-6 text-left">
                                         @if ($employee->status == 'PENDING')
                                             <span class="text-blue-500">{{ $employee->status }}</span>
+                                        @elseif ($employee->status == 'PROCESSING')
+                                            <span class="text-yellow-500">{{ $employee->status }}</span>
+                                            
                                         @elseif ($employee->status == 'COMPLETED')
                                             <span class="text-green-500">{{ $employee->status }}</span>
                                         @else

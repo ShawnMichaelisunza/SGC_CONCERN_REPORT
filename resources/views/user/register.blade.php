@@ -10,7 +10,7 @@
 
                 <form action="{{ route('user_create') }}" method="post">
                     @csrf
-                    <h1 class="text-center mb-2 text-red-700 font-bold text-5xl">Maintenance</h1>
+                    <h1 class="text-center mb-2 text-red-700 font-bold text-5xl">Request Report System</h1>
                     <h1 class="text-center mb-10 font-bold text-4xl">SIGN UP</h1>
 
 
@@ -48,7 +48,7 @@
                     <label for="" class="text-sm text-red-800">Employee No</label>
                     <input type="text" class=" bg-gray-100 border border-black outline-none rounded-md py-2 w-full px-4"
                         placeholder="2*21" name="emp_no">
-                    @error('name')
+                    @error('emp_no')
                         <span class="text-xs text-red-600">* {{ $message }}</span>
                     @enderror
                     <br>
@@ -87,18 +87,6 @@
                     <br>
                     <br>
 
-                    <label for="" class="text-sm text-red-800">User type</label>
-                    <select name="usertype" id=""
-                        class=" bg-gray-100 border border-black outline-none rounded-md py-2 w-full px-4 ">
-                        <option value="" selected>select</option>
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                    @error('usertype')
-                        <span class="text-xs text-red-600">* {{ $message }}</span>
-                    @enderror
-                    <br>
-                    <br>
                     <button type="submit"
                         class=" bg-red-700 hover:bg-red-500 border outline-none rounded-md py-3 w-full px-4 font-semibold text-white ">Sign
                         Up</button>

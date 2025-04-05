@@ -18,9 +18,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 Route::controller(UserController::class)->group(function () {
+
+    Route::get('/user_dashboard', 'index')->name('user.index')->middleware('auth', 'superAdmin');
+    Route::get('/user_deleted', 'deleted')->name('user.deleted')->middleware('auth', 'superAdmin');
+
+    Route::get('/user_create', 'createUser')->name('user.createUser')->middleware('auth', 'superAdmin');
+    Route::post('/user_store', 'storeUser')->name('user.storeUser');
+
+    Route::get('/user_view/{id}', 'view')->name('user.view')->middleware('auth', 'superAdmin');
+
+    Route::get('/user_edit/{id}', 'edit')->name('user.edit')->middleware('auth', 'superAdmin');
+    Route::put('/user_update/{id}', 'update')->name('user.update');
+
+    Route::get('/user_viewDelete/{id}', 'viewDelete')->name('user.viewDelete')->middleware('auth', 'superAdmin');
+    Route::delete('/user_delete/{id}', 'delete')->name('user.delete');
+
+
     Route::get('/login', 'login')->name('login');
     Route::post('/login_store', 'store')->name('user_store');
 

@@ -9,7 +9,7 @@
 
                 <form action="{{ route('user_store') }}" method="POST">
                     @csrf
-                    <h1 class="text-center mb-2 text-red-700 font-bold text-5xl">Maintenance</h1>
+                    <h1 class="text-center mb-2 text-red-700 font-bold text-5xl">Request Report System</h1>
                     <h1 class="text-center mb-10 font-bold text-4xl">SIGN IN</h1>
 
                     <label for="" class="text-lg text-red-800">Email</label>
@@ -35,7 +35,7 @@
                 </form>
             </div>
             <div class="">
-                <img src="{{ asset('assets/image/register_image.jpg') }}" class="rounded-3xl" alt="">
+                <img src="{{ asset('assets/image/login_image.jpg') }}" class="rounded-3xl" alt="">
             </div>
         </div>
     </div>

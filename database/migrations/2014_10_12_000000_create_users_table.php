@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->text('usertype');
+            $table->text('usertype')->default('user');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });
