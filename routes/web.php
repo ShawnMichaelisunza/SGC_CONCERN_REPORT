@@ -36,6 +36,10 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/user_viewDelete/{id}', 'viewDelete')->name('user.viewDelete')->middleware('auth', 'superAdmin');
     Route::delete('/user_delete/{id}', 'delete')->name('user.delete');
 
+    Route::get('/user_viewRestore/{id}', 'viewRestore')->name('user.viewRestore')->middleware('auth', 'superAdmin');
+    Route::post('/user_restore/{id}', 'restore')->name('user.restore');
+
+    // -------------------------------------------------------------
 
     Route::get('/login', 'login')->name('login');
     Route::post('/login_store', 'store')->name('user_store');
@@ -70,7 +74,7 @@ Route::controller(ReportController::class)
 
         // process a data
         Route::get('/report_view_process/{id}', 'viewProcess')->name('report_viewProcess');
-        Route::delete('/report_process/{id}', 'process')->name('report_process');
+        Route::post('/report_process/{id}', 'process')->name('report_process');
 
         // delete a data
         Route::get('/report_view_delete/{id}', 'viewDelete')->name('report_viewDelete');

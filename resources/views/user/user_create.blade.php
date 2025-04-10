@@ -129,7 +129,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="" class="text-sm font-medium text-gray-900 block mb-2">Confirm Password</label>
-                                    <input type="text" class=" bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5"
+                                    <input type="password" class=" bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5"
                                         placeholder="******" name="password_confirmation">
                                 </div>
                             </div>

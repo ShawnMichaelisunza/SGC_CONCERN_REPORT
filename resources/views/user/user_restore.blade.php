@@ -20,11 +20,11 @@
             <div class="space-y-2 p-2">
                 <div class="p-4 space-y-2 text-center dark:text-white">
                     <h2 class="text-xl font-bold tracking-tight" id="page-action.heading">
-                        {{ $report->name }}
+                        {{ $user->name }}
                     </h2>
 
                     <p class="text-gray-500">
-                        Are you sure you would like to Accept this?
+                        Are you sure you would like to restore this?
                     </p>
                 </div>
             </div>
@@ -34,7 +34,7 @@
 
                 <div class="px-6 py-2">
                     <div class="grid gap-1 grid-cols-[repeat(auto-fit,minmax(0,1fr))]">
-                        <form action="{{ route('report_process', encrypt($report->id)) }}" method="POST">
+                        <form action="{{ route('user.restore', encrypt($user->id)) }}" method="POST">
                             @csrf
 
                             <button type="submit" class="border border-green-300 bg-green-200 hover:bg-green-500 hover:text-white text-gray-700 py-2 px-8 rounded-md">

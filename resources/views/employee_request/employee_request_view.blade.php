@@ -1,35 +1,60 @@
-<div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center">
-
-    <!-- hoverlay  -->
-    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
-
-    <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
-        <!-- Add modal content here -->
-        <div class="modal-content py-4 text-left px-6">
-            <div class="flex justify-between items-center pb-3">
-                <p class="text-2xl font-bold uppercase">{{ $report->name }}</p>
-            </div>
-            <div class="flex justify-end">
-                <p class="text-sm text-red-400 font-medium">Date : <span class="text-gray-800 text-sm">{{ Carbon\Carbon::parse($report->created_at)->format('M d, Y') }}</span></p>
-            </div>
-            <div class="mt-6">
-                <p class="text-sm text-red-400 font-medium">Department : <span class="text-gray-800 text-sm">{{ $report->dept}}</span></p>
-            </div>
-            <div class="flex justify-between mt-6">
-                <p class="text-sm text-red-400 font-medium">Classification :<br><span class="text-gray-800 text-sm uppercase">{{ $report->classification }}</span></p>
-                <p class="text-sm text-red-400 font-medium">Urgency of Request :<br><span class="text-gray-800 text-sm">{{ $report->urgent }}</span></p>
-            </div>
-            <br>
-            <div>
-                <p class="text-sm text-red-400 font-medium">Reason: <br><span class="text-gray-800 text-sm">{{ $report->reason }}</span></p>
-            </div>
-
-            <div class="mt-5 flex justify-end">
-                <a href="" class="modal-close px-4 border border-gray-500 bg-red-100 p-3 rounded-lg text-black hover:bg-red-500 hover:text-white">Back</a>
-                {{-- <button class="px-4 hover:bg-red-500 bg-red-300 p-3 ml-3 rounded-lg text-black hover:text-white">Send To Email</button> --}}
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div>
+            <img src="{{ public_path('assets/image/sgc_logo.jpg') }}" alt="" width="230" style="margin-left: 230px">
         </div>
+        <table border="1" width="100%">
+            <tr>
+                <th style=" padding: 10px 0 ; font-size: 20px; color: red;" colspan="3">TICKET REQUEST FORM</th>
+            </tr>
+            <tr>
+                <td style="font-size: 14px; color: red;">Company / Branch : <span style="color: black;">{{ $report->company_name }}</span></td>
+                <td></td>
+                <td style="font-size: 14px; color: red;">Ticket No : <span style="color: black;">{{ $report->ticket_no }}</span></td>
+            </tr>
+            <tr>
+                <td style="font-size: 14px; color: red;">Name : <span style="color: black;"> {{ $report->name }}</span></td>
+                <td></td>
+                <td style="font-size: 14px; color:red ;">Date Request : <span style="color: black; "> {{ Carbon\Carbon::parse($report->created_at)->format('M d, Y - H:i a') }}</span></td>
+            </tr>
+            <tr>
+                <td style="font-size: 14px; color: red;">Employee No : <span  style="color: black;">{{ $report->emp_no }}</span></td>
+                <td></td>
+                <td style="font-size: 14px; color: red;">Dept : <span  style="color: black;">{{ $report->dept }}</span></td>
+            </tr>
+            <tr>
+                <td style="padding: 15px;" colspan="3"></td>
+            </tr>
+            <tr>
+                <td style="font-size: 14px; color: red; width: 35%;">Classification : <span  style="color: black;">{{ $report->classification }}</span></td>
+                <td></td>
+                <td style="font-size: 14px; color: red;">Urgent : <span  style="color: black;">{{ $report->urgent }}</span></td>
+            </tr>
+            <tr>
+                <td style="font-size: 14px; color: red;">Reason :</td>
+                <td style="font-size: 13px; padding: 5px;" colspan="2">{{ $report->reason }}</td>
+            </tr>
+
+            <tr>
+                <th style="padding-top: 25px;" ><p style="border-top: 2px solid black; font-size: 12px;">Request Signature</p></th>
+                <td></td>
+                <th style="padding-top: 25px;"><p style="border-top: 2px solid black; font-size: 12px;">Immediate Head Signature</p></th>
+            </tr>
+        </table>
     </div>
-
-</div>
-
+</body>
+</html>

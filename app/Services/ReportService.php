@@ -14,7 +14,8 @@ class ReportService
             ->where('dept', auth()->user()->dept)
             ->orderBy('created_at', 'DESC');
 
-        if (request()->has('search_name')) {
+
+            if (request()->has('search_name')) {
             $reports = $reports->where('name', 'like', '%' . request()->get('search_name', '') . '%');
         }
 

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('report_id');
             $table->string('action');
             $table->string('materials');
-            $table->dateTime('date_start');
-            $table->dateTime('date_end');
+            $table->date('date_start');
+            $table->date('date_end');
             $table->string('img_before');
             $table->string('img_after');
             $table->timestamps();

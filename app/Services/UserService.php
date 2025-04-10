@@ -1,38 +1,45 @@
 <?php
 
-
 namespace App\Services;
 
 use App\Models\User;
 
-class UserService{
-
+class UserService
+{
     // view all accounts
-    public function UserViewAllService(){
-
+    public function UserViewAllService()
+    {
         $users = User::orderBy('created_at', 'DESC');
+
+        if (request()->has('search_name')) {
+            $users = $users->where('name', 'like', '%' . request()->get('search_name', '') . '%');
+        }
 
         return $users->paginate(9);
     }
     // view deleted accounts
-    public function UserViewDeletedService(){
-
+    public function UserViewDeletedService()
+    {
         $users = User::onlyTrashed()->orderBy('created_at', 'DESC');
+
+        if (request()->has('search_name')) {
+            $users = $users->where('name', 'like', '%' . request()->get('search_name', '') . '%');
+        }
 
         return $users->paginate(9);
     }
 
     // create account
-    public function UserStoreService($data){
-
+    public function UserStoreService($data)
+    {
         $user = User::create($data);
 
         return $user;
     }
 
     // view an account
-    public function UserViewService($id){
-
+    public function UserViewService($id)
+    {
         $decrypt = decrypt($id);
         $user = User::findOrFail($decrypt);
 
@@ -40,13 +47,15 @@ class UserService{
     }
 
     // edit and update an account
-    public function UserEditService($id){
+    public function UserEditService($id)
+    {
         $decrypt = decrypt($id);
         $user = User::findOrFail($decrypt);
 
         return $user;
     }
-    public function UserUpdateService($id, $data){
+    public function UserUpdateService($id, $data)
+    {
         $decrypt = decrypt($id);
         $user = User::findOrFail($decrypt);
 
@@ -54,16 +63,15 @@ class UserService{
     }
 
     // view and delete an account
-    public function UserViewDeleteService($id){
-
+    public function UserViewDeleteService($id)
+    {
         $decrypt = decrypt($id);
         $user = User::findOrFail($decrypt);
 
         return $user;
-
     }
-    public function UserDeleteService($id){
-
+    public function UserDeleteService($id)
+    {
         $decrypt = decrypt($id);
         $user = User::findOrFail($decrypt);
         $user->usertype = 'DELETED';
@@ -73,4 +81,25 @@ class UserService{
         return $user;
     }
 
+    // view and restore an account
+    public function UserViewRestoreService($id)
+    {
+        $decrypt = decrypt($id);
+        $user = User::withTrashed()->findOrFail($decrypt);
+
+        return $user;
+    }
+    public function UserRestoreService($id)
+    {
+        $decrypt = decrypt($id);
+        $user = User::withTrashed()->findOrFail($decrypt);
+
+        if ($user->trashed()) {
+            $user->restore();
+            $user->usertype = 'user';
+            $user->save();
+
+            return $user;
+        }
+    }
 }

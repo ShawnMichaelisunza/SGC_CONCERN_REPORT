@@ -9,6 +9,7 @@ use App\Http\Requests\UserRequest;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -23,26 +24,25 @@ class UserController extends Controller
     // view all accounts
     public function index()
     {
-
         $users = $this->userService->UserViewAllService();
 
         return view('user.user_dashboard', ['users' => $users]);
     }
-    public function deleted(){
-
+    public function deleted()
+    {
         $users = $this->userService->UserViewDeletedService();
         return view('user.user_dashboard', ['users' => $users]);
     }
 
     // create an account
-    public function createUser(){
-
+    public function createUser()
+    {
         return view('user.user_create');
     }
-    public function storeUser(UserRequest $req){
-
+    public function storeUser(UserRequest $req)
+    {
         $val = $req->validated();
-        $val['password'] = bcrypt($val['password']);
+        $val['password'] = Hash::make($val['password']);
 
         $this->userService->UserStoreService($val);
 
@@ -50,22 +50,22 @@ class UserController extends Controller
     }
 
     // view an account
-    public function view($id){
-
+    public function view($id)
+    {
         $user = $this->userService->UserViewService($id);
         return view('user.user_view', ['user' => $user]);
     }
 
     // edit and update an account
-    public function edit($id){
-
+    public function edit($id)
+    {
         $user = $this->userService->UserEditService($id);
         return view('user.user_edit', ['user' => $user]);
     }
-    public function update($id, EditUserRequest $req){
-
+    public function update($id, EditUserRequest $req)
+    {
         $val = $req->validated();
-        $val['password'] = bcrypt($val['password']);
+        $val['password'] = Hash::make($val['password']);
 
         $this->userService->UserUpdateService($id, $val);
 
@@ -73,19 +73,32 @@ class UserController extends Controller
     }
 
     // view and delete an account
-    public function viewDelete($id){
-
+    public function viewDelete($id)
+    {
         $user = $this->userService->UserViewDeleteService($id);
         return view('user.user_view_delete', ['user' => $user]);
     }
-    public function delete($id){
-
+    public function delete($id)
+    {
         $this->userService->UserDeleteService($id);
         return redirect()->route('user.index')->with('success', 'Deleted Account Successfully !');
     }
 
-    // -------------------------------
+    // view and delete an account
+    public function viewRestore($id)
+    {
+        $user = $this->userService->UserViewRestoreService($id);
+        return view('user.user_restore', ['user' => $user]);
+    }
 
+
+    public function restore($id)
+    {
+        $this->userService->UserRestoreService($id);
+        return redirect()->route('user.index')->with('success', 'Restore Account Successfully !');
+    }
+
+    // -------------------------------
 
     // login account
     public function login()
@@ -127,7 +140,7 @@ class UserController extends Controller
     public function create(UserRequest $req)
     {
         $val = $req->validated();
-        $val['password'] = bcrypt($val['password']);
+        $val['password'] = Hash::make($val['password']);
 
         $this->userService->UserStoreService($val);
 

@@ -60,7 +60,13 @@ class EmployeeController extends Controller
     public function view($id)
     {
         $report = $this->employeeService->EmployeeViewService($id);
-        return view('employee_request.employee_request_view', ['report' => $report]);
+
+        $data = [
+            'report' => $report
+        ];
+
+        $pdf =  Pdf::loadView('employee_request.employee_request_view', $data);
+        return $pdf->stream('employee_request.pdf');
     }
 
     // edit and udpate a data

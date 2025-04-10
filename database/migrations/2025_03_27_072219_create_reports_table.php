@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->string('ticket_no')->nullable();
             $table->text('dept');
             $table->text('company_name');
             $table->text('emp_no');

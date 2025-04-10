@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReportRequest;
 use App\Services\ReportService;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -55,7 +56,13 @@ class ReportController extends Controller
     public function view($id)
     {
         $report = $this->reportService->ReportViewService($id);
-        return view('request.request_view', ['report' => $report]);
+
+        $data = [
+            'report' => $report
+        ];
+
+        $pdf = FacadePdf::loadView('request.request_view', $data);
+        return $pdf->stream('request.pdf');
     }
 
     // edit and udpate a data
@@ -80,7 +87,7 @@ class ReportController extends Controller
         return view('request.request_approve', ['report' => $report]);
     }
 
-    // view and delete a data
+    // view and approve request a data
     public function viewProcess($id)
     {
         $report = $this->reportService->ReportViewProcessService($id);
@@ -88,7 +95,10 @@ class ReportController extends Controller
     }
     public function process($id)
     {
-        $this->reportService->ReportProcessService($id);
+        $report = $this->reportService->ReportProcessService($id);
+        $report->ticket_no = 'TKT'. now()->format('Y'). ' - '. str_pad($report->id, 5, '0', STR_PAD_LEFT);
+        $report->save();
+
         return redirect()->route('dashboard')->with('success', 'Deleted Request Successfully !');
     }
 

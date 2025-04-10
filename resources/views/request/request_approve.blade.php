@@ -37,6 +37,7 @@
                         <h3 class="text-xl font-semibold">
                             APPROVE REQUEST FORM
                         </h3>
+                        <p class="text-red-700 font-semibold">{{ $report->ticket_no }}</p>
                     </div>
 
                     <div class="p-6 space-y-6">
@@ -198,7 +199,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label class="text-sm font-medium text-gray-900 block mb-2">Date & Time Work Started</label>
-                                    <input type="datetime-local" name="date_start"
+                                    <input type="date" name="date_start"
                                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                         placeholder="Juan Dela Cruz" >
                                     @error('date_start')
@@ -208,7 +209,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label class="text-sm font-medium text-gray-900 block mb-2">Date & Time Work Completed</label>
-                                    <input type="datetime-local" name="date_end"
+                                    <input type="date" name="date_end"
                                         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                         placeholder="Juan Dela Cruz" >
                                     @error('date_end')

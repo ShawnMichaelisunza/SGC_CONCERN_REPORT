@@ -7,6 +7,7 @@ use App\Http\Requests\MaintenanceRequest;
 use App\Models\Maintenance;
 use App\Services\MaintenanceService;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,6 +42,9 @@ class MaintenanceController extends Controller
             $img_f->move($pathF , $imgFName);
         }
 
+        $val['date_start'] = Carbon::parse($val['date_start'])->format('M d, Y');
+        $val['date_end'] = Carbon::parse($val['date_end'])->format('M d, Y');
+
         $val['img_before'] = $pathB.$imgBName;
 
         $val['img_after'] = $pathF.$imgFName;
@@ -55,7 +59,6 @@ class MaintenanceController extends Controller
         $report = $this->maintenanceService->MaintenancneViewService($id);
 
         $maintenances = Maintenance::where('report_id', $report->id)->get();
-        $user_id = auth()->user()->name;
 
 
         $data = [
@@ -65,7 +68,7 @@ class MaintenanceController extends Controller
 
         $pdf = Pdf::loadView('maintenance.maintenance_view', $data);
 
-        return $pdf->stream('sample.pdf');
+        return $pdf->stream('maintenance.pdf');
 
     }
 }
