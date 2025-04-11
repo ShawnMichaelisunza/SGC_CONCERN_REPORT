@@ -80,7 +80,7 @@ Route::controller(ReportController::class)
         Route::get('/report_view_delete/{id}', 'viewDelete')->name('report_viewDelete');
         Route::delete('/report_delete/{id}', 'destroy')->name('report_destroy');
     })
-    ->middleware('admin', 'auth');
+    ->middleware('admin', 'auth', 'headAdmin', 'superAdmin');
 
 Route::controller(MaintenanceController::class)->group(function () {
     Route::post('maintenance_store/{id}', 'store')->name('maintenance.store');

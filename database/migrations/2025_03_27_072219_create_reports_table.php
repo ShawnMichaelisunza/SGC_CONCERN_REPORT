@@ -18,6 +18,8 @@ return new class extends Migration
             $table->text('company_name');
             $table->text('emp_no');
             $table->text('name');
+            $table->text('user_cn');
+            $table->text('user_dept');
             $table->text('classification');
             $table->text('urgent');
             $table->string('reason');

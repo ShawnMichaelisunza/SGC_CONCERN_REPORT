@@ -10,6 +10,9 @@ body{
     #search_form{
         display: none;
     }
+    #create_btn{
+        display: none;
+    }
     td{
         font-size: 13px;
     }

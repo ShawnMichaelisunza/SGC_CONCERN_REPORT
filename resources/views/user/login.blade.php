@@ -31,8 +31,11 @@
 
                     <button type="submit"
                         class=" bg-red-700 hover:bg-red-500 border outline-none rounded-md py-3 w-full px-4 font-semibold text-white mt-5">Sign
-                        In</button>
+                        In
+                    </button>
+
                 </form>
+
             </div>
             <div class="">
                 <img src="{{ asset('assets/image/logo_2.jpg') }}" class="rounded-3xl" alt="">

@@ -14,15 +14,12 @@
 </head>
 <body>
     <div>
-        <div>
-            <img src="{{ public_path('assets/image/sgc_logo.jpg') }}" alt="" width="230" style="margin-left: 230px">
-        </div>
         <table border="1" width="100%">
             <tr>
-                <th style=" padding: 10px 0 ; font-size: 20px; color: red;" colspan="3">TICKET REQUEST FORM</th>
+                <th style=" padding: 10px 0 ; font-size: 20px; color: red;" colspan="3">SGC TICKET REQUEST FORM</th>
             </tr>
             <tr>
-                <td style="font-size: 14px; color: red;">Company / Branch : <span style="color: black;">{{ $report->company_name }}</span></td>
+                <td style="font-size: 14px; color: red;">Company / Branch : <span style="color: black;">{{ $report->user_cn }}</span></td>
                 <td></td>
                 <td style="font-size: 14px; color: red;">Ticket No : <span style="color: black;">{{ $report->ticket_no }}</span></td>
             </tr>
@@ -34,7 +31,7 @@
             <tr>
                 <td style="font-size: 14px; color: red;">Employee No : <span  style="color: black;">{{ $report->emp_no }}</span></td>
                 <td></td>
-                <td style="font-size: 14px; color: red;">Dept : <span  style="color: black;">{{ $report->dept }}</span></td>
+                <td style="font-size: 14px; color: red;">Dept : <span  style="color: black;">{{ $report->user_dept }}</span></td>
             </tr>
             <tr>
                 <td style="padding: 15px;" colspan="3"></td>

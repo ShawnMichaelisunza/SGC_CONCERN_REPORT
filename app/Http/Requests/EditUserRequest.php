@@ -26,6 +26,8 @@ class EditUserRequest extends FormRequest
             'dept' => ['required'],
             'emp_no' => ['required'],
             'name' => ['required'],
+            'user_cn' => ['required'],
+            'user_dept' => ['required'],
             'email' => ['required','email'],
             'password' => ['required', 'confirmed'],
             'usertype' => ['required']

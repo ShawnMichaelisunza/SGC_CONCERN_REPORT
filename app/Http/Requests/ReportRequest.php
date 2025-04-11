@@ -27,6 +27,8 @@ class ReportRequest extends FormRequest
             'company_name' => ['required'],
             'emp_no' => ['required'],
             'name' => ['required'],
+            'user_cn' => ['required'],
+            'user_dept' => ['required'],
             'classification' => ['required'],
             'urgent' => ['required'],
             'reason' => ['required']

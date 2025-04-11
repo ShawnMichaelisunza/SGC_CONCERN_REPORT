@@ -94,9 +94,12 @@
                                     @enderror
                                 </div>
 
+                                {{-- value name and emp_no --}}
                                 <input type="number" name="emp_no" value="{{ $report->emp_no }}" hidden>
-
                                 <input type="text" name="name" value="{{ $report->name }}" hidden>
+                                <input type="text" name="user_cn" value="{{ auth()->user()->company_name }}" hidden>
+                                <input type="text" name="user_dept" value="{{ auth()->user()->dept }}" hidden>
+                                {{-- end --}}
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label class="text-sm font-medium text-gray-900 block mb-2">Classification: (Check

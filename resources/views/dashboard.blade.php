@@ -43,8 +43,8 @@
                         <thead>
                             <tr class="bg-gray-700 text-white uppercase text-sm leading-normal">
                                 <th class="py-3 px-6 text-left font-semibold">Date</th>
-                                <th class="py-3 px-6 text-left font-semibold">Emp No</th>
                                 <th class="py-3 px-6 text-left font-semibold">Name</th>
+                                <th class="py-3 px-6 text-left font-semibold">Company name</th>
                                 <th class="py-3 px-6 text-left font-semibold">Department</th>
                                 <th class="py-3 px-6 text-left font-semibold">Status</th>
                                 <th class="py-3 px-6 text-center font-semibold">Actions</th>
@@ -56,9 +56,9 @@
                                 <tr class="border-b border-gray-200 hover:bg-gray-100">
                                     <td class="py-3 px-6 text-left font-semibold">
                                         {{ Carbon\Carbon::parse($employee->created_at)->format('M d, Y') }}</td>
-                                    <td class="py-3 px-6 text-left">{{ $employee->emp_no }}</td>
                                     <td class="py-3 px-6 text-left">{{ $employee->name }}</td>
-                                    <td class="py-3 px-6 text-left">{{ $employee->dept }}</td>
+                                    <td class="py-3 px-6 text-left">{{ $employee->user_cn }}</td>
+                                    <td class="py-3 px-6 text-left">{{ $employee->user_dept }}</td>
                                     <td class="py-3 px-6 text-left">
                                         @if ($employee->status == 'PENDING')
                                             <span class="text-blue-500 font-semibold">{{ $employee->status }}</span>

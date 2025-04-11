@@ -34,8 +34,9 @@
                 </div>
                 <div>
                     <a href="{{ route('report_create') }}"
-                        class="py-2 px-4 mx-4 bg-red-700 text-white border border-red-700 rounded">CREATE NEW
-                        REPORT</a>
+                        class="py-2 px-4 mx-4 bg-red-700 text-white border border-red-700 rounded">CREATE <span  id="create_btn">
+                            NEW REPORT
+                        </span></a>
                 </div>
             </div>
 
@@ -47,8 +48,8 @@
                         <thead>
                             <tr class="bg-gray-700 text-white uppercase text-sm leading-normal">
                                 <th class="py-3 px-6 text-left font-semibold">Date</th>
-                                <th class="py-3 px-6 text-left font-semibold">Emp No</th>
                                 <th class="py-3 px-6 text-left font-semibold">Name</th>
+                                <th class="py-3 px-6 text-left font-semibold">Company name</th>
                                 <th class="py-3 px-6 text-left font-semibold">Department</th>
                                 <th class="py-3 px-6 text-left font-semibold">Status</th>
                                 <th class="py-3 px-6 text-center font-semibold">Actions</th>
@@ -60,9 +61,9 @@
                                 <tr class="border-b border-gray-200 hover:bg-gray-100">
                                     <td class="py-3 px-6 text-left font-semibold">
                                         {{ Carbon\Carbon::parse($report->created_at)->format('M d, Y') }}</td>
-                                    <td class="py-3 px-6 text-left">{{ $report->emp_no }}</td>
                                     <td class="py-3 px-6 text-left">{{ $report->name }}</td>
-                                    <td class="py-3 px-6 text-left">{{ $report->dept }}</td>
+                                    <td class="py-3 px-6 text-left">{{ $report->user_cn }}</td>
+                                    <td class="py-3 px-6 text-left">{{ $report->user_dept }}</td>
                                     <td class="py-3 px-6 text-left">
                                         @if ($report->status == 'PENDING')
                                             <span class="text-blue-600 font-semibold">{{ $report->status }}</span>

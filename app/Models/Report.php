@@ -17,6 +17,8 @@ class Report extends Model
         'company_name',
         'emp_no',
         'name',
+        'user_cn',
+        'user_dept',
         'classification',
         'urgent',
         'reason'

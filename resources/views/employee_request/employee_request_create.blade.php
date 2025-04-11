@@ -78,6 +78,8 @@
 
                                     <input type="number" name="emp_no" value="{{ auth()->user()->emp_no }}" hidden>
                                     <input type="text" name="name" value="{{ auth()->user()->name }}" hidden>
+                                    <input type="text" name="user_cn" value="{{ auth()->user()->company_name }}" hidden>
+                                    <input type="text" name="user_dept" value="{{ auth()->user()->dept }}" hidden>
 
                                 {{-- end --}}
 
