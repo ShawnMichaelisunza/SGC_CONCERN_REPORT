@@ -3,10 +3,10 @@
 
 <!-- Sidebar -->
 <div class="hidden peer-checked:flex md:flex flex-col w-64 bg-red-800 transition-all duration-300 ease-in-out">
-    <div class="flex items-center justify-between h-16 bg-gray-200 px-4">
+    <div class="flex items-center justify-between h-16 bg-white px-4">
 
-        {{-- <img src="{{ asset('assets/image/sgc_logo.jpg') }}" alt="" class="h-12 w-12 mr-2"> --}}
-        <span class="text-gray-800 font-semibold uppercase mx-auto">{{ auth()->user()->name }}</span>
+        <img src="{{ asset('assets/image/logo_3.jpg') }}" alt="" class="h-10 w-10 mr-2">
+        <a href="{{ route('user.profile', encrypt(auth()->user()->id) ) }}" class="text-gray-800 font-semibold uppercase mx-auto">{{ auth()->user()->name }}</a>
 
         <label for="menu-toggle" class="text-red-800 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 lg:hidden" fill="none" viewBox="0 0 24 24"
@@ -17,7 +17,7 @@
         <!-- <span class="text-white font-bold uppercase">Sidebar</span> -->
     </div>
     <div class="flex flex-col flex-1 overflow-y-auto">
-        <nav class="flex-1 px-2 py-4 bg-gray-300">
+        <nav class="flex-1 px-2 py-4 bg-gray-100">
             <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-2 text-gray-800 hover:bg-red-700 hover:text-gray-100 group">
                 <i class="fa-solid fa-list h-7 w-7 mr-2 pt-2"></i>
                 DASHBOARD

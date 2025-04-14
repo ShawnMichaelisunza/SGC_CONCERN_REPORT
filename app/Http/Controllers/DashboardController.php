@@ -20,15 +20,18 @@ class DashboardController extends Controller
         $this->employeeService = $employeeService;
     }
 
-    public function index()
+    public function index(Request $req)
     {
+        $dateFrom = $req->date_from;
+        $dateTo = $req->date_to;
+
         $reports = $this->reportService->AllReportService();
 
         if (Auth::id()) {
             $usertype = auth()->user()->usertype;
 
             if ($usertype == 'admin' || $usertype == 'headAdmin' || $usertype == 'superAdmin') {
-                return view('admin_dashboard', ['reports' => $reports]);
+                return view('admin_dashboard', ['reports' => $reports, 'dateFrom' => $dateFrom, 'dateTo' => $dateTo]);
 
             }elseif($usertype == 'user'){
 

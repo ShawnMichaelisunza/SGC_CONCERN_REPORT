@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DateSearchRequest;
 use App\Http\Requests\ReportRequest;
 use App\Services\ReportService;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
@@ -18,25 +19,49 @@ class ReportController extends Controller
     }
 
     // view all data
-    public function pending()
+    public function pending(Request $req)
     {
+        $dateFrom = $req->date_from;
+        $dateTo = $req->date_to;
+
         $reports = $this->reportService->ReportAllPendingService();
-        return view('admin_dashboard', ['reports' => $reports]);
+        return view('admin_dashboard', ['reports' => $reports, 'dateFrom' => $dateFrom, 'dateTo' => $dateTo]);
     }
-    public function processed()
+    public function processed(Request $req)
     {
+        $dateFrom = $req->date_from;
+        $dateTo = $req->date_to;
+
         $reports = $this->reportService->ReportAllProcessService();
-        return view('admin_dashboard', ['reports' => $reports]);
+        return view('admin_dashboard', ['reports' => $reports, 'dateFrom' => $dateFrom, 'dateTo' => $dateTo]);
     }
-    public function completed()
+    public function completed(Request $req)
     {
+        $dateFrom = $req->date_from;
+        $dateTo = $req->date_to;
+
         $reports = $this->reportService->ReportAllCompletedService();
-        return view('admin_dashboard', ['reports' => $reports]);
+        return view('admin_dashboard', ['reports' => $reports, 'dateFrom' => $dateFrom, 'dateTo' => $dateTo]);
     }
-    public function disapproved()
+    public function disapproved(Request $req)
     {
+        $dateFrom = $req->date_from;
+        $dateTo = $req->date_to;
+
         $reports = $this->reportService->ReportAllDeleteService();
-        return view('admin_dashboard', ['reports' => $reports]);
+        return view('admin_dashboard', ['reports' => $reports, 'dateFrom' => $dateFrom, 'dateTo' => $dateTo]);
+    }
+
+    // view date search
+    public function dateSearch(DateSearchRequest $req){
+        $dateFrom = $req->date_from;
+        $dateTo = $req->date_to;
+
+        $val = $req->validated();
+
+        $reports = $this->reportService->ReportSearchDateService($val);
+
+        return view('admin_dashboard', ['reports' => $reports,  'dateFrom' => $dateFrom, 'dateTo' => $dateTo]);
     }
 
     // create a data

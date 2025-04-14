@@ -28,6 +28,12 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/user_create', 'createUser')->name('user.createUser')->middleware('auth', 'superAdmin');
     Route::post('/user_store', 'storeUser')->name('user.storeUser');
 
+    Route::get('/user_profile/{id}', 'profile')->name('user.profile')->middleware('auth');
+    Route::get('/user_profile_pending_list/{id}', 'pending')->name('user.pending')->middleware('auth');
+    Route::get('/user_profile_process_list/{id}', 'process')->name('user.process')->middleware('auth');
+    Route::get('/user_profile_completed_list/{id}', 'completed')->name('user.completed')->middleware('auth');
+    Route::get('/user_profile_canceled_list/{id}', 'canceled')->name('user.canceled')->middleware('auth');
+
     Route::get('/user_view/{id}', 'view')->name('user.view')->middleware('auth', 'superAdmin');
 
     Route::get('/user_edit/{id}', 'edit')->name('user.edit')->middleware('auth', 'superAdmin');
@@ -57,6 +63,9 @@ Route::controller(ReportController::class)
         Route::get('/report_processed', 'processed')->name('report_processed');
         Route::get('/report_completed', 'completed')->name('report_completed');
         Route::get('/report_disapproved', 'disapproved')->name('report_disapproved');
+
+        // view date search
+        Route::get('/report_date_search', 'dateSearch')->name('report_dateSearch');
 
         // create a data
         Route::get('/report_form', 'create')->name('report_create');

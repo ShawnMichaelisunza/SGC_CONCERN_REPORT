@@ -95,6 +95,7 @@
                                 </div>
 
                                 {{-- value name and emp_no --}}
+                                <input type="number" name="user_id" value="{{ auth()->user()->id }}" hidden>
                                 <input type="number" name="emp_no" value="{{ $report->emp_no }}" hidden>
                                 <input type="text" name="name" value="{{ $report->name }}" hidden>
                                 <input type="text" name="user_cn" value="{{ auth()->user()->company_name }}" hidden>

@@ -12,6 +12,7 @@ class Report extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'user_id',
         'ticket_no',
         'dept',
         'company_name',

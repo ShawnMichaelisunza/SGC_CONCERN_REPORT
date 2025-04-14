@@ -7,9 +7,7 @@ use App\Models\Report;
 class ReportService
 {
     // view all data
-
-    public function AllReportService()
-    {
+    public function AllReportService(){
         $reports = Report::where('company_name', auth()->user()->company_name)
             ->where('dept', auth()->user()->dept)
             ->orderBy('created_at', 'DESC');
@@ -67,6 +65,17 @@ class ReportService
         if (request()->has('search_name')) {
             $reports = $reports->where('name', 'like', '%' . request()->get('search_name', '') . '%');
         }
+
+        return $reports->paginate(9);
+    }
+
+    // view all data using search date
+    public function ReportSearchDateService($dateFrom = null, $dateTo = null){
+
+        $reports = Report::whereBetween('created_at', [$dateFrom, $dateTo])
+        ->where('company_name', auth()->user()->company_name)
+        ->where('dept', auth()->user()->dept)
+        ->orderBy('created_at', 'DESC');
 
         return $reports->paginate(9);
     }

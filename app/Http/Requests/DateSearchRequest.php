@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UserRequest extends FormRequest
+class DateSearchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +22,8 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'company_name' => ['required'],
-            'dept' => ['required'],
-            'emp_no' => ['required'],
-            'name' => ['required'],
-            'email' => ['required','email', Rule::unique('users', 'email')],
-            'password' => ['required', 'confirmed'],
+            'date_from' => ['nullable'],
+            'date_to' => ['nullable']
         ];
     }
 }

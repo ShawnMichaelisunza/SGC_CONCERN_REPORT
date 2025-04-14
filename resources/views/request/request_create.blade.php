@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="flex h-screen bg-gray-100">
+    <div class="flex h-screen bg-white">
         @include('navbar.admin_navbar')
 
 
@@ -9,7 +9,7 @@
         <div class="flex flex-col flex-1 overflow-y-auto">
 
             {{-- button and search bar --}}
-            <div class="flex items-center justify-between h-16 bg-white border-b border-gray-200">
+            <div class="flex items-center justify-between h-16 py-5 bg-gray-100 border-b border-gray-100">
                 <div class="flex items-center px-4 ">
                     <label for="menu-toggle"
                         class="md:hidden mr-4 bg-red-800 text-white p-2 rounded focus:outline-none cursor-pointer">
@@ -77,6 +77,7 @@
 
                                 {{-- user name and emp_no --}}
 
+                                    <input type="number" name="user_id" value="{{ auth()->user()->id }}" hidden>
                                     <input type="number" name="emp_no" value="{{ auth()->user()->emp_no }}" hidden>
                                     <input type="text" name="name" value="{{ auth()->user()->name }}" hidden>
                                     <input type="text" name="user_cn" value="{{ auth()->user()->company_name }}" hidden>

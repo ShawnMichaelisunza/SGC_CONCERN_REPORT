@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="flex h-screen bg-gray-200">
+    <div class="flex h-screen bg-white">
         @include('navbar.admin_navbar')
 
         @include('layout.success')
@@ -10,7 +10,7 @@
         <div class="flex flex-col flex-1 overflow-y-auto">
 
             {{-- button and search bar --}}
-            <div class="flex items-center justify-between h-16 bg-gray-300 border-b border-gray-200 py-4">
+            <div class="flex items-center justify-between h-16 bg-gray-100 border-b border-gray-100 py-4">
                 <div class="flex items-center px-4 ">
                     <label for="menu-toggle"
                         class="md:hidden mr-4 bg-red-800 text-white p-2 rounded focus:outline-none cursor-pointer">
@@ -42,11 +42,22 @@
 
             {{-- table --}}
             <div class="px-4 py-5">
+            {{-- search date btn --}}
+                <div class="flex justify-end py-2">
+                    <form action="{{ route('report_dateSearch') }}" method="GET" class="flex align-middle gap-2">
+                        @csrf
+                        <input type="date" name="date_from" value="{{ $dateFrom }}" class="border border-red-700 bg-red-700 text-white py-1.5 px-3 text-xs rounded-md">
+                        <input type="date" name="date_to" value="{{ $dateTo }}" class="border border-red-700 bg-red-700 text-white py-1.5 px-3 text-xs rounded-md">
+                        <button type="submit" class="border border-red-700 px-3 bg-red-700 text-white py-1 rounded-md">
+                            <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                        </button>
+                    </form>
+                </div>
                 <!-- User Table -->
-                <div class="overflow-x-auto bg-white rounded-lg shadow">
+                <div class="overflow-x-auto bg-gray-100 rounded-lg shadow">
                     <table class="w-full table-auto">
                         <thead>
-                            <tr class="bg-gray-700 text-white uppercase text-sm leading-normal">
+                            <tr class="bg-gray-700 text-gray-100 uppercase text-sm leading-normal">
                                 <th class="py-3 px-6 text-left font-semibold">Date</th>
                                 <th class="py-3 px-6 text-left font-semibold">Name</th>
                                 <th class="py-3 px-6 text-left font-semibold">Company name</th>
@@ -58,7 +69,7 @@
 
                         <tbody class="text-gray-600 text-sm">
                             @foreach ($reports as $report)
-                                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                <tr class="border-b border-gray-200 hover:bg-gray-200">
                                     <td class="py-3 px-6 text-left font-semibold">
                                         {{ Carbon\Carbon::parse($report->created_at)->format('M d, Y') }}</td>
                                     <td class="py-3 px-6 text-left">{{ $report->name }}</td>

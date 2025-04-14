@@ -37,6 +37,14 @@ class UserService
         return $user;
     }
 
+    // view a user profile
+    public function UserProfileService($id){
+        $decrypt = decrypt($id);
+        $user = User::findOrFail($decrypt);
+
+        return $user;
+    }
+
     // view an account
     public function UserViewService($id)
     {

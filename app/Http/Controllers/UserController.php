@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\Report;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,37 @@ class UserController extends Controller
         return view('user.user_dashboard', ['users' => $users]);
     }
 
+    // view all request
+    public function pending($id){
+
+        $user = $this->userService->UserProfileService($id);
+        $reports = Report::where('user_id', $user->id)->where('status', 'PENDING')->orderBy('created_at', 'DESC');
+
+        return view('user.user_profile', ['user' => $user, 'reports' => $reports->paginate(5)]);
+    }
+    public function process($id){
+
+        $user = $this->userService->UserProfileService($id);
+        $reports = Report::where('user_id', $user->id)->where('status', 'PROCESSING')->orderBy('created_at', 'DESC');
+
+        return view('user.user_profile', ['user' => $user, 'reports' => $reports->paginate(5)]);
+    }
+    public function completed($id){
+
+        $user = $this->userService->UserProfileService($id);
+        $reports = Report::where('user_id', $user->id)->where('status', 'COMPLETED')->orderBy('created_at', 'DESC');
+
+        return view('user.user_profile', ['user' => $user, 'reports' => $reports->paginate(5)]);
+    }
+    public function canceled($id){
+
+        $user = $this->userService->UserProfileService($id);
+        $reports = Report::where('user_id', $user->id)->onlyTrashed()->orderBy('created_at', 'DESC');
+
+        return view('user.user_profile', ['user' => $user, 'reports' => $reports->paginate(5)]);
+    }
+
+
     // create an account
     public function createUser()
     {
@@ -47,6 +79,16 @@ class UserController extends Controller
         $this->userService->UserStoreService($val);
 
         return redirect()->route('user.index')->with('success', 'Created Account Successfully !');
+    }
+
+    // view a profile account
+    public function profile($id){
+
+        $user = $this->userService->UserProfileService($id);
+        $reports = Report::where('user_id', $user->id)->orderBy('created_at', 'DESC');
+
+        return view('user.user_profile', ['user' => $user, 'reports' => $reports->paginate(5)]);
+
     }
 
     // view an account

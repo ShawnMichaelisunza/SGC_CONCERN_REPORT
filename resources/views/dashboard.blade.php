@@ -3,13 +3,13 @@
 
 @section('content')
     @include('layout.success')
-    <div class="flex h-screen bg-gray-200">
+    <div class="flex h-screen bg-white">
         @include('navbar.navbar')
 
         <div class="flex flex-col flex-1 overflow-y-auto">
 
             {{-- button and search bar --}}
-            <div class="flex items-center justify-between h-16 bg-gray-300 border-b border-gray-200 py-4">
+            <div class="flex items-center justify-between h-16 bg-gray-100 border-b border-gray-100 py-4">
                 <div class="flex items-center px-4 ">
                     <label for="menu-toggle"
                         class="md:hidden mr-4 bg-red-800 text-white p-2 rounded focus:outline-none cursor-pointer">
@@ -38,7 +38,7 @@
 
             <div class="px-4 py-5">
                 <!-- User Table -->
-                <div class="overflow-x-auto bg-white rounded-lg shadow">
+                <div class="overflow-x-auto bg-gray-100 rounded-lg shadow">
                     <table class="w-full table-auto">
                         <thead>
                             <tr class="bg-gray-700 text-white uppercase text-sm leading-normal">
@@ -53,7 +53,7 @@
 
                         <tbody class="text-gray-600 text-sm">
                             @foreach ($employees as $employee)
-                                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                <tr class="border-b border-gray-200 hover:bg-gray-200">
                                     <td class="py-3 px-6 text-left font-semibold">
                                         {{ Carbon\Carbon::parse($employee->created_at)->format('M d, Y') }}</td>
                                     <td class="py-3 px-6 text-left">{{ $employee->name }}</td>

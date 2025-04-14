@@ -22,6 +22,7 @@ class ReportRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'user_id' => ['required'],
             'ticket_no' => ['nullable'],
             'dept' => ['required'],
             'company_name' => ['required'],
